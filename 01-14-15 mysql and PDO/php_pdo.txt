@@ -1,0 +1,4 @@
+Information on PHP Database Access and PDO
+
+http://code.tutsplus.com/tutorials/php-database-access-are-you-doing-it-correctly--net-25338
+
