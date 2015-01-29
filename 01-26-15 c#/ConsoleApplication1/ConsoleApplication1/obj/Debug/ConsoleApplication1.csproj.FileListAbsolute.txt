@@ -1,0 +1,2 @@
+c:\users\elliot\documents\visual studio 2013\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Elliot\GitRepos\Info344labs\01-26-15 c#\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
