@@ -49,6 +49,13 @@ namespace ConsoleApplication1
                 Console.WriteLine(s + ": " + dict[s]);
             }
 
+            Console.WriteLine();
+            for (int i = 1; i < 36; i++)
+            {
+                Console.Write("=@col" + i + ", ");
+            }
+            Console.ReadLine();
+
             // classes
             eBayProduct p = new eBayProduct();
             Console.WriteLine(p.Name + ": " + p.Price);
