@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <script>
+        $(function () {
+            function updateResults(data) {
+                console.log('called');
+                $('#results').html(JSON.stringify(data));
+            }
+
+            $('#call-btn').click(function () {
+                console.log('clicked');
+                var num = $('#input-num').val();
+                $.ajax({
+                    crossDomain: true,
+                    contentType: "application/json; charset=utf-8",
+                    url: "http://jsonp-test.azurewebsites.net/WebService1.asmx/GetOneLessThanN",
+                    data: { n: num },
+                    dataType: "jsonp",
+                    success: function (data) {
+                        console.log('success');
+                        updateResults(data);
+                    }
+                });
+            });
+        });
+
+    </script>
+    <title></title>
+</head>
+<body>
+    <div id="results"></div>
+    <input id="input-num" type="text" name="name" value="" />
+    <input id="call-btn" type="submit" name="name" value="Submit" />
+
+    <!--<script src="http://jsonp-test.azurewebsites.net/WebService1.asmx/GetOneLessThanN?callback=updateResults&n=10"></script>-->
+</body>
+</html>
