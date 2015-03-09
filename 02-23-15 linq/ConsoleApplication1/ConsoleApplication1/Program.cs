@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ConsoleApplication1
 {
@@ -11,6 +12,41 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            // Query the table for partition matches
+            List<string> candidateUrls = new List<string> 
+            { "x.com", "x.com", "x.com", "x.com", "y.com", "y.com", "z.com" };
+
+            var sites = candidateUrls
+                .GroupBy(x => x)
+                .Select(x => new Tuple<string, int>(x.Key, x.ToList().Count))
+                .OrderByDescending(x => x.Item2);
+
+            foreach (Tuple<string, int> t in sites)
+            {
+                Console.WriteLine(t);
+            }
+
+
+            string s = "bleacher, report | says stuff....";
+            var sb = new StringBuilder();
+
+            foreach (char c in s)
+            {
+                if (!char.IsPunctuation(c) || c == ' ')
+                    sb.Append(c);
+            }
+            s = sb.ToString();
+            Console.WriteLine("s = " + s);
+
+
+
+            string codeTest = "http://bleacherreport.com/nba";
+            string encoded = HttpUtility.UrlEncode(codeTest);
+            Console.WriteLine(encoded);
+            Console.WriteLine(HttpUtility.UrlDecode(encoded));
+
+
+
             List<string> results = GetSquares(5);
             foreach (string n in results)
             {
