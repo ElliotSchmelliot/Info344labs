@@ -9,8 +9,8 @@ use Aws\Ec2\Ec2Client;
 set_time_limit(300);
 
 $ec2Client = Ec2Client::factory(array(
-    'key'        => 'AKIAJXEQJRDHC7T7HE6A',
-    'secret'    => '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 ',
+    'key'        => '',
+    'secret'    => '',
     'region'    => 'us-west-2'
 ));
 
