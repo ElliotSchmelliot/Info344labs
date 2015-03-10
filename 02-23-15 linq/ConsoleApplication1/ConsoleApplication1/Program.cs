@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary1;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,17 +14,23 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             // Query the table for partition matches
-            List<string> candidateUrls = new List<string> 
-            { "x.com", "x.com", "x.com", "x.com", "y.com", "y.com", "z.com" };
+            List<WebPageEntity> candidates = new List<WebPageEntity>();
+            candidates.Add(new WebPageEntity("nba", "x.com", new DateTime(2015, 3, 9), "div stuff"));
+            candidates.Add(new WebPageEntity("nba", "y.com", new DateTime(2015, 3, 10), "div stuff"));
+            candidates.Add(new WebPageEntity("nba", "z.com", new DateTime(2015, 3, 8), "div stuff"));
+            candidates.Add(new WebPageEntity("bleacher", "x.com", new DateTime(2015, 3, 6), "div stuff"));
+            candidates.Add(new WebPageEntity("bleacher", "y.com", new DateTime(2015, 3, 12), "div stuff"));
+            candidates.Add(new WebPageEntity("report", "x.com", new DateTime(2015, 3, 15), "div stuff"));
 
-            var sites = candidateUrls
-                .GroupBy(x => x)
+            var res = candidates
+                .GroupBy(x => x.RowKey)
                 .Select(x => new Tuple<string, int>(x.Key, x.ToList().Count))
-                .OrderByDescending(x => x.Item2);
+                .OrderByDescending(x => x.Item2)
+                .Take(10);
 
-            foreach (Tuple<string, int> t in sites)
+            foreach (Tuple<string, int> ent in res)
             {
-                Console.WriteLine(t);
+                Console.WriteLine(ent);
             }
 
 
